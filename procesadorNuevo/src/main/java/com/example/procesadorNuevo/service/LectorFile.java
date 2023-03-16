@@ -1,5 +1,6 @@
 package com.example.procesadorNuevo.service;
 
+import com.example.procesadorNuevo.model.File;
 import com.example.procesadorNuevo.model.People;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +19,9 @@ public class LectorFile {
         this.lines = new ArrayList<>();
     }
 
-    public List<People> procesar(String path){
+    public List<People> procesar(File file){
         try{
-            BufferedReader br = new BufferedReader(new FileReader(path));
+            BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
             boolean firstLine = true;
             String line;
             while((line = br.readLine())!= null){

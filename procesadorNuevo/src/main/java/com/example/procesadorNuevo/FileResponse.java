@@ -15,15 +15,15 @@ public class FileResponse {
         this.validLines = validLines;
     }
 
-    public void setIinvalidLines(int iinvalidLines) {
-        this.invalidLines = iinvalidLines;
+    public void setInvalidLines(int invalidLines) {
+        this.invalidLines = invalidLines;
     }
 
     public int getValidLines() {
         return validLines;
     }
 
-    public int getIinvalidLines() {
+    public int getInvalidLines() {
         return invalidLines;
     }
 }
