@@ -11,17 +11,27 @@ import java.util.List;
 @Service
 public class ProcesadorService {
     private LectorFile lectorFile;
+    private FileProcessor fileProcessor;
+    private int validLines;
+    private int invalidLines;
+
     @Autowired
-    public ProcesadorService(LectorFile lectorFile) {
+    public ProcesadorService(LectorFile lectorFile, FileProcessor fileProcessor) {
         this.lectorFile = lectorFile;
+        this.fileProcessor = fileProcessor;
     }
 
     public FileResponse process(File file){
         List<People> peopleList = this.lectorFile.procesar(file);
-        //por cada línea hacer un http request}//e validar hay que tener un post request
-        //leer peopleList, registro por registro, enviar cada uno en post request al servicio de validar
-        //este servicio retorna true o false (validar)
-        //A fileresponse setear las lineas válidas e inválidas
-        return new FileResponse();
+        for(People person:peopleList){
+            boolean validation = fileProcessor.sendLine(person);
+            if(validation){
+                validLines++;
+            }else{
+                invalidLines++;
+            }
+        }
+
+        return new FileResponse(validLines, invalidLines);
     }
 }

@@ -21,7 +21,7 @@ public class FileProcessor {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<People> request = new HttpEntity<>(person, headers);
-        boolean response = (this.restTemplate.postForObject("http://localhost:8080/validator/", request, Boolean.class));
+        boolean response = (this.restTemplate.postForObject("http://localhost:8080/validator/lines", request, Boolean.class));
         return response;
     }
 
