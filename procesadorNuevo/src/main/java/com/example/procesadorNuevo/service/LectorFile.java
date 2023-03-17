@@ -22,14 +22,8 @@ public class LectorFile {
     public List<People> procesar(File file){
         try{
             BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
-            boolean firstLine = true;
             String line;
             while((line = br.readLine())!= null){
-                if(firstLine){
-                    firstLine = false;
-                    continue;
-                }
-
                 String[] values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                 People person = new People(values[0],values[1],values[2],values[3],values[4],values[5],values[6],values[7],values[8]);
                 lines.add(person);

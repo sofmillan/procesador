@@ -12,8 +12,8 @@ import java.util.List;
 public class ProcesadorService {
     private LectorFile lectorFile;
     private FileProcessor fileProcessor;
-    private int validLines;
-    private int invalidLines;
+    private int validLines=0;
+    private int invalidLines=0;
 
     @Autowired
     public ProcesadorService(LectorFile lectorFile, FileProcessor fileProcessor) {
@@ -23,6 +23,7 @@ public class ProcesadorService {
 
     public FileResponse process(File file){
         List<People> peopleList = this.lectorFile.procesar(file);
+        System.out.println(peopleList.size());
         for(People person:peopleList){
             boolean validation = fileProcessor.sendLine(person);
             if(validation){

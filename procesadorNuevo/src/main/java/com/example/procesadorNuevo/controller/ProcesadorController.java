@@ -4,6 +4,7 @@ import com.example.procesadorNuevo.FileResponse;
 import com.example.procesadorNuevo.model.File;
 import com.example.procesadorNuevo.service.ProcesadorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,13 @@ public class ProcesadorController {
     }
 
     @PostMapping("/uploadFile")
+    public ResponseEntity<FileResponse> sendPerson(@RequestBody File file){
+        FileResponse response = procesadorService.process(file);
+        return ResponseEntity.ok().body(response);
+    }
+
+ /*   @PostMapping("/uploadFile")
     public FileResponse sendPerson(@RequestBody File file){
         return procesadorService.process(file);
-    }
+    }*/
 }
